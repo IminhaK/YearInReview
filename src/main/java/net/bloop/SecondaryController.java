@@ -103,7 +103,10 @@ public class SecondaryController implements Initializable {
         if(champion.getId() != mostFrequent)
             text5.setText(text5.getText() + " They have played " + champData.get(mostFrequent).getName()+ " " + helper.getChampionFrequency(mostFrequent, champData) + " times.");
 
-        //long inted = helper.getIntedGames();
-        //text6.setText("They have inted (less than 1.0 KDA) in " + inted + " out of " + matches.size() + " games.");
+        text6.setText("Loading inted games counter...");
+        /*CompletableFuture.supplyAsync(() -> helper.getIntedGames())
+                .thenApply(inted -> inted)
+                .thenAccept(inted -> text6.setText("They have inted (less than 1.0 KDA) in " + inted + " out of " + matches.size() + " games."))
+                .thenRun(() -> System.out.println("Done."));*/
     }
 }
