@@ -4,7 +4,6 @@ import no.stelar7.api.l4j8.basic.constants.types.GameQueueType;
 import no.stelar7.api.l4j8.basic.constants.types.SeasonType;
 import no.stelar7.api.l4j8.basic.utils.LazyList;
 import no.stelar7.api.l4j8.pojo.match.MatchReference;
-import no.stelar7.api.l4j8.pojo.match.ParticipantStats;
 import no.stelar7.api.l4j8.pojo.staticdata.champion.StaticChampion;
 import no.stelar7.api.l4j8.pojo.summoner.Summoner;
 
@@ -72,23 +71,6 @@ public class Helper {
         }
 
         return popular;
-    }
-
-    public long getIntedGames()
-    {
-        long inted = 0;
-        for(int i = 1; i <= matches.size(); i++)
-        {
-            long kda;
-            ParticipantStats stats = matches.get(i-1).getFullMatch().getParticipantFromSummonerId(summoner.getSummonerId()).getStats();
-            if(stats.getDeaths() != 0)
-                kda = (stats.getKills() + stats.getAssists()) / stats.getDeaths();
-            else
-                kda = 1000000000; //yay perfect kda good job friend!
-            if(kda < 1)
-                inted++;
-        }
-        return inted;
     }
 
     public String getFriendlyMatchName(GameQueueType type)
